@@ -1,6 +1,6 @@
-# Creek Live
+# Creek
 
-Creek live is a Livestreaming/VOD platform powered by Cloudflare Stream, Pages, and Workers. It is intended for high-skill, low-budget teams who are looking for an alternative to YouTube/Vimeo/Restream/Facebook.
+Creek is a Livestreaming/VOD platform powered by Cloudflare Stream, Pages, and Workers. It is intended for high-skill, low-budget teams who are looking for an alternative to YouTube/Vimeo/Restream/Facebook.
 
 ## Next.js
 
