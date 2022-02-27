@@ -1,8 +1,26 @@
 # Creek
 
-Creek is a Livestreaming/VOD platform powered by Cloudflare Stream, Pages, and Workers. It is intended for high-skill, low-budget teams who are looking for an alternative to YouTube/Vimeo/Restream/Facebook.
+Creek is a Livestreaming/VOD platform powered by Cloudflare [Stream](https://www.cloudflare.com/products/cloudflare-stream/), [Pages](https://pages.cloudflare.com/), and [Workers](https://workers.cloudflare.com/). It is intended for high-skill, low-budget teams who are looking for an alternative to YouTube/Vimeo/Restream/Facebook.
 
-## Next.js
+## Features
+
+### MVP/1.0
+- [ ] Livestreaming with Cloudflare Stream backend
+- [ ] Re-broadcasting to YouTube/Vimeo/Facebook
+- [ ] Stream scheduling (Pushes new stream events to YouTube/Vimeo/Facebook if in use) 
+- [ ] Multi-user authentication
+
+### 2.0
+- [ ] Video uploads (w/o livestream)
+- [ ] "Channel" overview (With playlists and sorting)
+- [ ] Stream toolkit (Utilities for integrating with [BitFocus Companion](https://bitfocus.io/companion/), OBS, etc. - Same idea as [Hologram](https://github.com/PulseDevelopmentGroup/Hologram))
+- [ ] Integration with ChurchOnlinePlatform(?)
+
+### 3.0
+- [ ] Chat aggregation
+- [ ] SaaS offering (Billing dashboard, managed backend, etc.)
+
+## Development
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
