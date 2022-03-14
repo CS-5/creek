@@ -13,6 +13,7 @@
     "wrangler:dev": "wrangler pages dev -- npm run next:dev"
   },
   "dependencies": {
+    "@cloudflare/stream-react": "^1.6.1",
     "daisyui": "^2.8.0",
     "next": "12.1.0",
     "react": "17.0.2",
