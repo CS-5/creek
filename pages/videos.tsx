@@ -2,16 +2,16 @@ import type { NextLayoutPage } from "next";
 import { ReactNode } from "react";
 import PublicLayout from "../layouts/Public";
 
-const Home: NextLayoutPage = () => {
+const Videos: NextLayoutPage = () => {
   return (
     <>
-      <h1>Index</h1>
+      <h1>Videos</h1>
     </>
   );
 };
 
-Home.getLayout = (page: ReactNode) => {
+Videos.getLayout = (page: ReactNode) => {
   return <PublicLayout>{page}</PublicLayout>;
 };
 
-export default Home;
+export default Videos;

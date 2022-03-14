@@ -1,6 +1,6 @@
 import React from "react";
 
-import Navbar from "../components/Navbar";
+import PublicNavbar from "../components/navigation/Public";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -9,7 +9,7 @@ type LayoutProps = {
 const Layout: React.FunctionComponent<LayoutProps> = ({ children }) => {
   return (
     <>
-      <Navbar />
+      <PublicNavbar />
       {children}
     </>
   );

@@ -2,16 +2,16 @@ import type { NextLayoutPage } from "next";
 import { ReactNode } from "react";
 import PublicLayout from "../layouts/Public";
 
-const Home: NextLayoutPage = () => {
+const Dashboard: NextLayoutPage = () => {
   return (
     <>
-      <h1>Index</h1>
+      <h1>Live Dashboard</h1>
     </>
   );
 };
 
-Home.getLayout = (page: ReactNode) => {
+Dashboard.getLayout = (page: ReactNode) => {
   return <PublicLayout>{page}</PublicLayout>;
 };
 
-export default Home;
+export default Dashboard;
