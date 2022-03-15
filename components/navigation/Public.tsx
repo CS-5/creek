@@ -1,7 +1,10 @@
 import Link from "next/link";
 import { FunctionComponent } from "react";
+import { useAuth } from "react-use-auth";
 
 const Navbar: FunctionComponent = () => {
+  const { login } = useAuth();
+
   return (
     <div className="navbar mb-2 shadow-lg bg-neutral text-neutral-content rounded-box">
       <div className="flex-1 px-2 mx-2">
@@ -10,7 +13,7 @@ const Navbar: FunctionComponent = () => {
       <div className="flex-none hidden px-2 mx-2 lg:flex">
         <div className="flex items-stretch">
           <Link href="/live">
-            <div className="btn btn-ghost btn-sm rounded-btn">
+            <button className="btn btn-ghost btn-sm rounded-btn">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6 mr-2"
@@ -26,10 +29,10 @@ const Navbar: FunctionComponent = () => {
                 />
               </svg>
               Live
-            </div>
+            </button>
           </Link>
           <Link href="/videos">
-            <div className="btn btn-ghost btn-sm rounded-btn">
+            <button className="btn btn-ghost btn-sm rounded-btn">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6 mr-2"
@@ -45,11 +48,11 @@ const Navbar: FunctionComponent = () => {
                 />
               </svg>
               Video Archive
-            </div>
+            </button>
           </Link>
-          <Link href="/login">
-            <div className="btn btn-ghost btn-sm rounded-btn">Login</div>
-          </Link>
+          <button onClick={login} className="btn btn-ghost btn-sm rounded-btn">
+            Login
+          </button>
         </div>
       </div>
     </div>

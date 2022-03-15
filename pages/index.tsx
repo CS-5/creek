@@ -1,17 +1,11 @@
-import type { NextLayoutPage } from "next";
-import { ReactNode } from "react";
-import PublicLayout from "../layouts/Public";
+import type { NextPage } from "next";
 
-const Home: NextLayoutPage = () => {
+const Home: NextPage = () => {
   return (
     <>
       <h1>Index</h1>
     </>
   );
-};
-
-Home.getLayout = (page: ReactNode) => {
-  return <PublicLayout>{page}</PublicLayout>;
 };
 
 export default Home;

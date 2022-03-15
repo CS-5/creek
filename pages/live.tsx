@@ -1,17 +1,11 @@
-import type { NextLayoutPage } from "next";
-import { ReactNode } from "react";
-import PublicLayout from "../layouts/Public";
+import { NextPage } from "next";
 
-const Dashboard: NextLayoutPage = () => {
+const Dashboard: NextPage = () => {
   return (
     <>
       <h1>Live Dashboard</h1>
     </>
   );
-};
-
-Dashboard.getLayout = (page: ReactNode) => {
-  return <PublicLayout>{page}</PublicLayout>;
 };
 
 export default Dashboard;
