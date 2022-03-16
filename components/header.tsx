@@ -8,7 +8,9 @@ const Navbar: FunctionComponent = () => {
   return (
     <div className="navbar mb-2 shadow-lg bg-neutral text-neutral-content rounded-box">
       <div className="flex-1 px-2 mx-2">
-        <span className="text-lg font-bold text-primary">Creek</span>
+        <Link href="/">
+          <a className="text-lg font-bold text-primary">Creek</a>
+        </Link>
       </div>
       <div className="flex-none hidden px-2 mx-2 lg:flex">
         <div className="flex items-stretch">
@@ -51,7 +53,7 @@ const Navbar: FunctionComponent = () => {
             </div>
           </Link>
           {isAuthenticated && (
-            <Link href="/settings">
+            <Link href="/admin">
               <a className="btn btn-ghost btn-sm rounded-btn">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
