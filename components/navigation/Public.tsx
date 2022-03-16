@@ -1,10 +1,7 @@
 import Link from "next/link";
 import { FunctionComponent } from "react";
-import { useAuth } from "react-use-auth";
 
 const Navbar: FunctionComponent = () => {
-  const { login } = useAuth();
-
   return (
     <div className="navbar mb-2 shadow-lg bg-neutral text-neutral-content rounded-box">
       <div className="flex-1 px-2 mx-2">
@@ -50,9 +47,7 @@ const Navbar: FunctionComponent = () => {
               Video Archive
             </button>
           </Link>
-          <button onClick={login} className="btn btn-ghost btn-sm rounded-btn">
-            Login
-          </button>
+          <button className="btn btn-ghost btn-sm rounded-btn">Login</button>
         </div>
       </div>
     </div>
