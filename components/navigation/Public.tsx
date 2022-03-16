@@ -1,7 +1,10 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import Link from "next/link";
 import { FunctionComponent } from "react";
 
 const Navbar: FunctionComponent = () => {
+  const { loginWithRedirect } = useAuth0();
+
   return (
     <div className="navbar mb-2 shadow-lg bg-neutral text-neutral-content rounded-box">
       <div className="flex-1 px-2 mx-2">
@@ -47,7 +50,12 @@ const Navbar: FunctionComponent = () => {
               Video Archive
             </button>
           </Link>
-          <button className="btn btn-ghost btn-sm rounded-btn">Login</button>
+          <button
+            onClick={loginWithRedirect}
+            className="btn btn-ghost btn-sm rounded-btn"
+          >
+            Login
+          </button>
         </div>
       </div>
     </div>
