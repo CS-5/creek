@@ -11,7 +11,7 @@ const Navbar: FunctionComponent<Props> = (props: Props) => {
 
   return (
     <header {...props}>
-      <div className="navbar mb-2 shadow-lg bg-neutral text-neutral-content rounded-box">
+      <div className="navbar mb-2 shadow-lg bg-neutral text-neutral-content">
         <div className="flex-1 px-2 mx-2">
           <span className="text-lg font-bold text-primary">Creek</span>
         </div>

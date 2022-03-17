@@ -14,7 +14,7 @@ const Layout: FunctionComponent<Props> = ({ children }) => {
   return (
     <div className="flex min-h-screen flex-col">
       <Header className="flex h-16" />
-      <main className="flex flex-grow">
+      <main className="flex flex-grow p-2">
         {isLoading ? "Loading..." : children}
       </main>
       <Footer className="flex h-16" />
