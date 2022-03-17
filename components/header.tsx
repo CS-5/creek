@@ -102,6 +102,13 @@ const Navbar: FunctionComponent<Props> = (props: Props) => {
                 tabIndex={0}
                 className="mt-3 p-2 shadow menu menu-compact dropdown-content rounded-box w-36 bg-neutral "
               >
+                {isAuthenticated && (
+                  <li>
+                    <label className="modal-button" htmlFor="account-info">
+                      Account Info
+                    </label>
+                  </li>
+                )}
                 <li>
                   <button
                     onClick={
@@ -118,6 +125,14 @@ const Navbar: FunctionComponent<Props> = (props: Props) => {
           </div>
         </div>
       </div>
+
+      <input type="checkbox" id="account-info" className="modal-toggle" />
+      <label htmlFor="account-info" className="modal cursor-pointer">
+        <label className="modal-box relative" htmlFor="">
+          <h3 className="text-lg font-bold">User Account Info</h3>
+          <pre>{JSON.stringify(user, null, 2)}</pre>
+        </label>
+      </label>
     </header>
   );
 };
