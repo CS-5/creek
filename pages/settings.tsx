@@ -4,11 +4,9 @@ import Error from "../components/error";
 import { useEffect, useState } from "react";
 
 const Settings: NextPage = () => {
-  const [data, setData] = useState<any>(null);
+  const [data, setData] = useState("");
   const [loading, setLoading] = useState(false);
   const { isLoading, isAuthenticated } = useAuth0();
-
-  setLoading(isLoading);
 
   if (!isAuthenticated && !isLoading) {
     return (
@@ -22,13 +20,12 @@ const Settings: NextPage = () => {
   useEffect(() => {
     setLoading(true);
 
-    fetch("api/default/info")
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data);
-        setLoading(false);
-      });
-  });
+    fetch("api/default/public/info").then(async (data) => {
+      const text = await data.text();
+      setData(text);
+      setLoading(false);
+    });
+  }, []);
 
   if (loading) return <p>Loading...</p>;
 
