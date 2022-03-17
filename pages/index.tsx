@@ -2,11 +2,11 @@ import type { NextPage } from "next";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Index: NextPage = () => {
-  const { user } = useAuth0();
+  const { user, isAuthenticated, isLoading } = useAuth0();
+
   return (
     <>
-      <h1>Index</h1>
-      <p>User: {JSON.stringify(user)}</p>
+      <h1>{isAuthenticated ? "Live Dashboard" : "Live"} </h1>
     </>
   );
 };

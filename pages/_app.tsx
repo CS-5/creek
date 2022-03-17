@@ -3,11 +3,9 @@ import { AppProps } from "next/app";
 import Head from "next/head";
 import Layout from "../components/layout";
 import { ReactNode } from "react";
-import { Auth0Provider, useAuth0 } from "@auth0/auth0-react";
+import { Auth0Provider } from "@auth0/auth0-react";
 
 export default function App({ Component, pageProps }: AppProps): ReactNode {
-  const auth = useAuth0();
-
   const callbackDomain =
     typeof window !== "undefined"
       ? `${window.location.protocol}//${window.location.host}`
