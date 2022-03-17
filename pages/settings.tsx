@@ -15,9 +15,9 @@ const Settings: NextPage = () => {
   }
 
   return (
-    <>
+    <div className="prose">
       <h1>Settings</h1>
-    </>
+    </div>
   );
 };
 

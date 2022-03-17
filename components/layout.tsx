@@ -1,5 +1,6 @@
 import Header from "./header";
 import Footer from "./footer";
+import { FunctionComponent } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { ReactNode } from "react";
 
@@ -7,7 +8,7 @@ interface Props {
   children: ReactNode;
 }
 
-export default function Layout({ children }: Props) {
+const Layout: FunctionComponent<Props> = ({ children }) => {
   const { isLoading } = useAuth0();
 
   return (
@@ -19,4 +20,6 @@ export default function Layout({ children }: Props) {
       <Footer className="flex h-16" />
     </div>
   );
-}
+};
+
+export default Layout;

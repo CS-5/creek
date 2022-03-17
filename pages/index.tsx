@@ -5,9 +5,9 @@ const Index: NextPage = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
 
   return (
-    <>
+    <div className="prose">
       <h1>{isAuthenticated ? "Live Dashboard" : "Live"} </h1>
-    </>
+    </div>
   );
 };
 

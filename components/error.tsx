@@ -6,7 +6,7 @@ interface Props {
   statusCode?: number;
 }
 
-const Navbar: FunctionComponent<Props> = (props: Props) => {
+const Error: FunctionComponent<Props> = (props: Props) => {
   return (
     <div className="prose flex flex-col mx-auto justify-center items-center">
       <h1>An error occured</h1>
@@ -16,4 +16,4 @@ const Navbar: FunctionComponent<Props> = (props: Props) => {
   );
 };
 
-export default Navbar;
+export default Error;

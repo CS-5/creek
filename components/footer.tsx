@@ -4,7 +4,7 @@ interface Props {
   className?: string;
 }
 
-const Navbar: FunctionComponent<Props> = (props: Props) => {
+const Footer: FunctionComponent<Props> = (props: Props) => {
   return (
     <footer {...props}>
       <div className="footer footer-center p-4 bg-base-300 text-base-content">
@@ -14,4 +14,4 @@ const Navbar: FunctionComponent<Props> = (props: Props) => {
   );
 };
 
-export default Navbar;
+export default Footer;
