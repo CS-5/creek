@@ -4,9 +4,20 @@ import Error from "../components/error";
 import { useEffect, useState } from "react";
 
 const Settings: NextPage = () => {
-  const [data, setData] = useState("");
-  const [loading, setLoading] = useState(false);
-  const { isLoading, isAuthenticated } = useAuth0();
+  const [data, setData] = useState<any>();
+  const { isLoading, isAuthenticated, getAccessTokenSilently } = useAuth0();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      getAccessTokenSilently().then((token) => {
+        fetch("/api/default/info", {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+          .then((res) => res.json())
+          .then(setData);
+      });
+    }
+  }, []);
 
   if (!isAuthenticated && !isLoading) {
     return (
@@ -17,22 +28,10 @@ const Settings: NextPage = () => {
     );
   }
 
-  useEffect(() => {
-    setLoading(true);
-
-    fetch("api/default/public/info").then(async (data) => {
-      const text = await data.text();
-      setData(text);
-      setLoading(false);
-    });
-  }, []);
-
-  if (loading) return <p>Loading...</p>;
-
   return (
     <div className="prose">
       <h1>Settings</h1>
-      <pre>{data}</pre>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
     </div>
   );
 };

@@ -1,3 +1,3 @@
 export async function onRequest() {
-  return new Response("Hello, world!");
+  return new Response(JSON.stringify("Hello, world!"));
 }

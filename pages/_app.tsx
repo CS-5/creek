@@ -17,7 +17,7 @@ export default function App({ Component, pageProps }: AppProps): ReactNode {
       clientId={process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID ?? ""}
       redirectUri={callbackDomain}
     >
-        <div data-theme="night">
+      <div data-theme="night">
         <Head>
           <title>Creek</title>
           <meta property="og:title" content="Creek" key="title" />
