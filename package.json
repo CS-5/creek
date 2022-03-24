@@ -10,7 +10,7 @@
     "next:export": "next export",
     "next:start": "next start",
     "next:lint": "next lint",
-    "wrangler:dev": "wrangler pages dev -- npm run next:dev"
+    "wrangler:dev": "dotenv wrangler pages dev -- npm run next:dev"
   },
   "dependencies": {
     "@auth0/auth0-react": "^1.9.0",
@@ -30,6 +30,7 @@
     "@types/react": "17.0.40",
     "@typescript-eslint/eslint-plugin": "^5.15.0",
     "autoprefixer": "^10.4.2",
+    "dotenv-cli": "^5.0.0",
     "eslint": "8.11.0",
     "eslint-config-next": "12.1.0",
     "install": "^0.13.0",
