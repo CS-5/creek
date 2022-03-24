@@ -5,18 +5,21 @@ Creek is a Livestreaming/VOD platform powered by Cloudflare [Stream](https://www
 ## Features
 
 ### MVP/1.0
+
 - [ ] Livestreaming with Cloudflare Stream backend
 - [ ] Re-broadcasting to YouTube/Vimeo/Facebook
-- [ ] Stream scheduling (Pushes new stream events to YouTube/Vimeo/Facebook if in use) 
+- [ ] Stream scheduling (Pushes new stream events to YouTube/Vimeo/Facebook if in use)
 - [ ] Multi-user authentication
 
 ### 2.0
+
 - [ ] Video uploads (w/o livestream)
 - [ ] "Channel" overview (With playlists and sorting)
 - [ ] Stream toolkit (Utilities for integrating with [BitFocus Companion](https://bitfocus.io/companion/), OBS, etc. - Same idea as [Hologram](https://github.com/PulseDevelopmentGroup/Hologram))
 - [ ] Integration with ChurchOnlinePlatform(?)
 
 ### 3.0
+
 - [ ] Chat aggregation
 - [ ] SaaS offering (Billing dashboard, managed backend, etc.)
 
