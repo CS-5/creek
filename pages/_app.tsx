@@ -16,6 +16,8 @@ export default function App({ Component, pageProps }: AppProps): ReactNode {
       domain={process.env.NEXT_PUBLIC_AUTH0_DOMAIN ?? ""}
       clientId={process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID ?? ""}
       redirectUri={callbackDomain}
+      audience={process.env.NEXT_PUBLIC_AUTH0_AUDIENCE ?? ""}
+      scope={process.env.NEXT_PUBLIC_AUTH0_SCOPE ?? ""}
     >
       <div data-theme="night">
         <Head>
