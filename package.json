@@ -10,7 +10,7 @@
     "next:export": "next export",
     "next:start": "next start",
     "next:lint": "next lint",
-    "wrangler:dev": "dotenv -c -- bash -c 'wrangler pages dev --binding WORKER_AUTH0_ISSUER=\"$WORKER_AUTH0_ISSUER\" --binding WORKER_AUTH0_AUDIENCE=\"$WORKER_AUTH0_AUDIENCE\" --binding \"WORKER_AUTH0_TOKEN=$WORKER_AUTH0_TOKEN\" --binding WORKER_AUTH0_DOMAIN=\"$WORKER_AUTH0_DOMAIN\" -- npm run next:dev'"
+    "wrangler:dev": "dotenv -c -- bash -c 'wrangler pages dev --binding AUTH0_ISSUER=\"$WORKER_AUTH0_ISSUER\" --binding AUTH0_AUDIENCE=\"$WORKER_AUTH0_AUDIENCE\" --binding AUTH0_TOKEN=\"$WORKER_AUTH0_TOKEN\" --binding AUTH0_DOMAIN=\"$WORKER_AUTH0_DOMAIN\" -- npm run next:dev'"
   },
   "dependencies": {
     "@auth0/auth0-react": "^1.9.0",

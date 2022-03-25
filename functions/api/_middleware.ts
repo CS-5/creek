@@ -11,21 +11,23 @@ const errorHandler: PagesFunction = async ({ next }) => {
 };
 
 const authenticate: PagesFunction<{
-  WORKER_AUTH0_ISSUER: string;
-  WORKER_AUTH0_AUDIENCE: string;
+  AUTH0_DOMAIN: string;
+  AUTH0_AUDIENCE: string;
 }> = async ({ request, env, next, data }) => {
   console.log(env);
-  const token = request.headers.get("Authorization");
+  let token = request.headers.get("Authorization");
   if (!token) {
     return new Response(JSON.stringify("Unauthorized: No token"), {
       status: 401,
     });
   }
 
+  token = token.replace("Bearer ", "");
+
   const result = await parseJwt(
     token,
-    env.WORKER_AUTH0_ISSUER,
-    env.WORKER_AUTH0_AUDIENCE
+    `https://${env.AUTH0_DOMAIN}/`,
+    env.AUTH0_AUDIENCE
   );
 
   if (!result.valid) {
@@ -40,16 +42,16 @@ const authenticate: PagesFunction<{
 };
 
 const getUser: PagesFunction<{
-  WORKER_AUTH0_DOMAIN: string;
-  WORKER_AUTH0_TOKEN: string;
+  AUTH0_DOMAIN: string;
+  AUTH0_TOKEN: string;
 }> = async ({ env, next, data }) => {
   const jwt: any = data.jwt;
 
   const res = await fetch(
-    `https://${env.WORKER_AUTH0_DOMAIN}/api/v2/users/${jwt.payload.sub}`,
+    `https://${env.AUTH0_DOMAIN}/api/v2/users/${jwt.payload.sub}`,
     {
       headers: {
-        Authorization: `Bearer ${env.WORKER_AUTH0_TOKEN}`,
+        Authorization: `Bearer ${env.AUTH0_TOKEN}`,
       },
     }
   );
