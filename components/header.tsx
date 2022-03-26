@@ -109,6 +109,13 @@ const Navbar: FunctionComponent<Props> = (props: Props) => {
                     </label>
                   </li>
                 )}
+                {isAuthenticated && (
+                  <li>
+                    <label className="modal-button" htmlFor="account-link">
+                      Link Accounts
+                    </label>
+                  </li>
+                )}
                 <li>
                   <button
                     onClick={
@@ -125,6 +132,15 @@ const Navbar: FunctionComponent<Props> = (props: Props) => {
           </div>
         </div>
       </div>
+
+      <input type="checkbox" id="account-link" className="modal-toggle" />
+      <label htmlFor="account-link" className="modal cursor-pointer">
+        <label className="modal-box relative" htmlFor="">
+          <h3 className="text-lg font-bold">Link Account</h3>
+          <button className="btn">Google</button>
+          <button className="btn">GitHub</button>
+        </label>
+      </label>
 
       <input type="checkbox" id="account-info" className="modal-toggle" />
       <label htmlFor="account-info" className="modal cursor-pointer">
