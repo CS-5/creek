@@ -10,7 +10,7 @@
     "next:export": "next export",
     "next:start": "next start",
     "next:lint": "next lint",
-    "wrangler:dev": "dotenv -c -- bash -c 'wrangler pages dev --binding AUTH0_AUDIENCE=\"$WORKER_AUTH0_AUDIENCE\" --binding AUTH0_DOMAIN=\"$WORKER_AUTH0_DOMAIN\" --binding AUTH0_CLIENT_SECRET=\"$WORKER_AUTH0_CLIENT_SECRET\" --binding AUTH0_CLIENT_ID=\"$WORKER_AUTH0_CLIENT_ID\" -- npm run next:dev'"
+    "wrangler:dev": "dotenv -c -- bash -c 'wrangler pages dev --binding AUTH0_CLIENT_AUDIENCE=\"$WORKER_AUTH0_CLIENT_AUDIENCE\" --binding AUTH0_DOMAIN=\"$WORKER_AUTH0_DOMAIN\" --binding AUTH0_BACKEND_SECRET=\"$WORKER_AUTH0_BACKEND_SECRET\" --binding AUTH0_BACKEND_ID=\"$WORKER_AUTH0_BACKEND_ID\" -- npm run next:dev'"
   },
   "dependencies": {
     "@auth0/auth0-react": "^1.9.0",
@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^3.4.0",
-    "@types/auth0": "^2.34.14",
+    "@types/auth0": "^2.34.15",
     "@types/node": "17.0.23",
     "@types/react": "17.0.43",
     "@typescript-eslint/eslint-plugin": "^5.16.0",

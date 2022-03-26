@@ -10,7 +10,7 @@ const Settings: NextPage = () => {
   useEffect(() => {
     if (isAuthenticated) {
       getAccessTokenSilently().then((token) => {
-        fetch("/api/user", {
+        fetch("/api/admin/user", {
           headers: { Authorization: `Bearer ${token}` },
         })
           .then((res) => res.json())
