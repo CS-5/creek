@@ -4,7 +4,7 @@ interface Props {
   className?: string;
 }
 
-const Footer: FunctionComponent<Props> = (props: Props) => {
+export const AppFooter: FunctionComponent<Props> = (props: Props) => {
   return (
     <footer {...props}>
       <div className="footer footer-center p-4 bg-base-300 text-base-content">
@@ -13,5 +13,3 @@ const Footer: FunctionComponent<Props> = (props: Props) => {
     </footer>
   );
 };
-
-export default Footer;

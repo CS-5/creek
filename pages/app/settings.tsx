@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import { useAuth0 } from "@auth0/auth0-react";
-import Error from "../components/error";
+import Error from "../../components/error";
 import { useEffect, useState } from "react";
 
 const Settings: NextPage = () => {

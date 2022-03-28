@@ -1,15 +1,19 @@
 import "../styles/globals.css";
 import { AppProps } from "next/app";
 import Head from "next/head";
-import Layout from "../components/layout";
+import { AppLayout, LandingLayout } from "../components/layout/layouts";
 import { ReactNode } from "react";
 import { Auth0Provider } from "@auth0/auth0-react";
+import { useRouter } from "next/router";
 
 export default function App({ Component, pageProps }: AppProps): ReactNode {
+  const router = useRouter();
   const callbackDomain =
     typeof window !== "undefined"
       ? `${window.location.protocol}//${window.location.host}`
       : "http://localhost:3000";
+
+  const Layout = router.pathname.startsWith("/app") ? AppLayout : LandingLayout;
 
   return (
     <Auth0Provider

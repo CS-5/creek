@@ -1,23 +1,28 @@
 import Link from "next/link";
 import { FunctionComponent } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import Logo from "../logo";
+import { useRouter } from "next/router";
 
 interface Props {
   className?: string;
 }
 
-const Navbar: FunctionComponent<Props> = (props: Props) => {
-  const { isAuthenticated, logout, loginWithRedirect, user } = useAuth0();
+export const AppHeader: FunctionComponent<Props> = (props: Props) => {
+  const router = useRouter();
+  const { isLoading, isAuthenticated, logout, user } = useAuth0();
+
+  if (!isLoading && !isAuthenticated) router.push("/");
 
   return (
     <header {...props}>
       <div className="navbar mb-2 shadow-lg bg-neutral text-neutral-content">
         <div className="flex-1 px-2 mx-2">
-          <span className="text-lg font-bold text-primary">Creek</span>
+          <Logo />
         </div>
         <div className="flex-none hidden py-auto px-2 mx-2 lg:flex">
           <div className="flex items-center">
-            <Link href="/">
+            <Link href="/app" passHref>
               <div className="btn btn-ghost btn-sm rounded-btn">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -36,7 +41,7 @@ const Navbar: FunctionComponent<Props> = (props: Props) => {
                 Live
               </div>
             </Link>
-            <Link href="/videos">
+            <Link href="/app/videos" passHref>
               <div className="btn btn-ghost btn-sm rounded-btn">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -55,32 +60,30 @@ const Navbar: FunctionComponent<Props> = (props: Props) => {
                 Videos
               </div>
             </Link>
-            {isAuthenticated && (
-              <Link href="/settings">
-                <a className="btn btn-ghost btn-sm rounded-btn">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6 mr-2"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
-                    />
-                  </svg>
-                  Settings
-                </a>
-              </Link>
-            )}
+            <Link href="/app/settings" passHref>
+              <a className="btn btn-ghost btn-sm rounded-btn">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6 mr-2"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+                  />
+                </svg>
+                Settings
+              </a>
+            </Link>
             <div className="dropdown dropdown-end">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
                   {user && user.picture ? (
-                    <img src={user.picture} />
+                    <img src={user.picture} alt="User avatar" />
                   ) : (
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -102,29 +105,21 @@ const Navbar: FunctionComponent<Props> = (props: Props) => {
                 tabIndex={0}
                 className="mt-3 p-2 shadow menu menu-compact dropdown-content rounded-box w-36 bg-neutral "
               >
-                {isAuthenticated && (
-                  <li>
-                    <label className="modal-button" htmlFor="account-info">
-                      Account Info
-                    </label>
-                  </li>
-                )}
-                {isAuthenticated && (
-                  <li>
-                    <label className="modal-button" htmlFor="account-link">
-                      Link Accounts
-                    </label>
-                  </li>
-                )}
+                <li>
+                  <label className="modal-button" htmlFor="account-info">
+                    Account Info
+                  </label>
+                </li>
+                <li>
+                  <label className="modal-button" htmlFor="account-link">
+                    Link Accounts
+                  </label>
+                </li>
                 <li>
                   <button
-                    onClick={
-                      isAuthenticated
-                        ? () => logout({ returnTo: window.location.origin })
-                        : loginWithRedirect
-                    }
+                    onClick={() => logout({ returnTo: window.location.origin })}
                   >
-                    {isAuthenticated ? "Logout" : "Login"}
+                    Logout
                   </button>
                 </li>
               </ul>
@@ -152,5 +147,3 @@ const Navbar: FunctionComponent<Props> = (props: Props) => {
     </header>
   );
 };
-
-export default Navbar;
