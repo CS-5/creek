@@ -18,10 +18,10 @@ export default function App({ Component, pageProps }: AppProps): ReactNode {
   return (
     <Auth0Provider
       domain={process.env.NEXT_PUBLIC_AUTH0_DOMAIN ?? ""}
-      clientId={process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID ?? ""}
+      clientId={process.env.NEXT_PUBLIC_AUTH0_FRONTEND_CLIENT_ID ?? ""}
       redirectUri={callbackDomain}
-      audience={process.env.NEXT_PUBLIC_AUTH0_AUDIENCE ?? ""}
-      scope={process.env.NEXT_PUBLIC_AUTH0_SCOPE ?? ""}
+      audience={process.env.NEXT_PUBLIC_AUTH0_FRONTEND_AUDIENCE ?? ""}
+      scope={process.env.NEXT_PUBLIC_AUTH0_FRONTEND_SCOPE ?? ""}
     >
       <div data-theme="night">
         <Head>

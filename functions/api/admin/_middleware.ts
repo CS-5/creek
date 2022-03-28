@@ -17,13 +17,13 @@ const setup: PagesFunction<{
   AUTH0_DOMAIN: string;
   AUTH0_BACKEND_ID: string;
   AUTH0_BACKEND_SECRET: string;
-  AUTH0_CLIENT_AUDIENCE: string;
+  AUTH0_FRONTEND_AUDIENCE: string;
 }> = async ({ env, next, data }) => {
   data.auth0 = {
     domain: env.AUTH0_DOMAIN,
     backendId: env.AUTH0_BACKEND_ID,
     backendSecret: env.AUTH0_BACKEND_SECRET,
-    clientAudience: env.AUTH0_CLIENT_AUDIENCE,
+    frontendAudience: env.AUTH0_FRONTEND_AUDIENCE,
   };
 
   return next();
@@ -64,7 +64,7 @@ const verifyJwt: PagesFunction = async ({ request, next, data }) => {
   if (data.user) return next();
 
   // Get Authorization header
-  let token = request.headers.get("Authorization") ?? "";
+  const token = request.headers.get("Authorization") ?? "";
 
   // If no Authorization header, return
   if (!token) return Respond("No Authorization header", 401);
@@ -73,7 +73,7 @@ const verifyJwt: PagesFunction = async ({ request, next, data }) => {
   const result = await parseJwt(
     token.replace("Bearer ", ""),
     `https://${data.auth0.domain}/`,
-    data.auth0.clientAudience
+    data.auth0.frontendAudience
   );
 
   // If token is invalid, inform user

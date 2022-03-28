@@ -13,7 +13,7 @@ declare type RequestData = {
   user?: User;
   auth0?: {
     domain: string;
-    clientAudience: string;
+    frontendAudience: string;
     backendId: string;
     backendSecret: string;
   };
