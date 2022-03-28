@@ -25,37 +25,117 @@ Creek is a Livestreaming/VOD platform powered by Cloudflare [Stream](https://www
 
 ## Development
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This project is built on Next.js, designed to run on Cloudflare Pages and utilize Cloudflare Pages Functions (Beta). Getting started is fairly simple.
 
-### Getting Started
+### 0. Install Dependencies
 
-First, run the development server:
+`npm install` .........aaaaannndd that's it.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+### 1. Configuring Environment
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Copy contents of `.env.example` to `.env.local` and set accordingly:
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+| Key                                    | Value                                    | Note                                                                          |
+| -------------------------------------- | ---------------------------------------- | ----------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_AUTH0_DOMAIN`             | `example.us.auth0.com`                   |                                                                               |
+| `NEXT_PUBLIC_AUTH0_FRONTEND_CLIENT_ID` |                                          | Will define in [Frontend Settings](#frontend-settings)                        |
+| `NEXT_PUBLIC_AUTH0_FRONTEND_SCOPE`     |                                          | Will define in [API Settings](#api-settings)                                  |
+| `NEXT_PUBLIC_AUTH0_FRONTEND_AUDIENCE`  |                                          | Will define in [API Settings](#api-settings)                                  |
+| `WORKER_AUTH0_DOMAIN`                  | `${NEXT_PUBLIC_AUTH0_DOMAIN}`            | Using a reference requires using `dotenv`, will be set manually when deployed |
+| `WORKER_AUTH0_FRONTEND_AUDIENCE`       | `${NEXT_PUBLIC_AUTH0_FRONTEND_AUDIENCE}` | Using a reference requires using `dotenv`, will be set manually when deployed |
+| `WORKER_AUTH0_BACKEND_ID`              |                                          | Will define in [Backend Settings](#backend-settings)                          |
+| `WORKER_AUTH0_BACKEND_SECRET`          |                                          | Will define in [Backend Settings](#backend-settings)                          |
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### 2. Setting up Authentication
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+1. Create an Auth0 Account and Tenant
+2. Create a frontend (single page) application (See below for settings)
+3. Create a backend (machine-to-machine) application (See below for settings)
+4. Create an API (See below for settings)
 
-### Learn More
+#### Frontend Settings
 
-To learn more about Next.js, take a look at the following resources:
+The settings are all required. The values provided as examples for these should be changed as-needed and are for development configurations only.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+##### Setup
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+| Property | Value   |
+| -------- | ------- |
+| Name     | `MyApp` |
 
-### Deploy on Vercel
+##### Settings
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Property               | Value                                            |
+| ---------------------- | ------------------------------------------------ |
+| Allowed Callback URLs  | `http://localhost:3000`, `http://localhost:8788` |
+| Allowed Logout URLs    | `http://localhost:3000`, `http://localhost:8788` |
+| Allowed Web Origins    | `http://localhost:3000`, `http://localhost:8788` |
+| Allowed Origins (CORS) | `http://localhost:3000`, `http://localhost:8788` |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+##### .env.local
+
+| Key                                    | Value                            |
+| -------------------------------------- | -------------------------------- |
+| `NEXT_PUBLIC_AUTH0_FRONTEND_CLIENT_ID` | Your SPA application `Client ID` |
+
+#### Backend Settings
+
+The settings are all required. The values provided as examples for these should be changed as-needed and are for development configurations only.
+
+##### Setup
+
+| Property | Value       |
+| -------- | ----------- |
+| Name     | `MyBackend` |
+
+##### APIs
+
+| Property             | Value      | Permissions                          |
+| -------------------- | ---------- | ------------------------------------ |
+| Auth0 Management API | Authorized | `read:users`, `read:user_idp_tokens` |
+
+##### .env.local
+
+| Key                           | Value                                   |
+| ----------------------------- | --------------------------------------- |
+| `WORKER_AUTH0_BACKEND_ID`     | Your machine-to-machine `Client ID`     |
+| `WORKER_AUTH0_BACKEND_SECRET` | Your machine-to-machine `Client Secret` |
+
+#### API Settings
+
+##### Setup
+
+| Property          | Value                   | Note                                                                             |
+| ----------------- | ----------------------- | -------------------------------------------------------------------------------- |
+| Name              | `MyAPI`                 |                                                                                  |
+| Identifier        | `https://myapp.com/api` | Normally your API endpoint, does not have to be publicly available or even a URL |
+| Signing Algorithm | `RS256`                 |                                                                                  |
+
+##### Settings
+
+| Property                                           | Value  |
+| -------------------------------------------------- | ------ |
+| RBAC Settings: Enable RBAC                         | `true` |
+| RBAC Settings: Add Permissions in the Access Token | `true` |
+
+##### Permissions
+
+Add a scope(s) as needed. Requires at least one scope by default.
+
+##### Machine to Machine Applications
+
+Enable your backend and grant permissions as needed. `// TODO: Determine if this is necessary`
+
+##### .env.local
+
+| Key                                   | Value                                                   |
+| ------------------------------------- | ------------------------------------------------------- |
+| `NEXT_PUBLIC_AUTH0_FRONTEND_SCOPE`    | The scopes you created in [Permissions](#permissions)   |
+| `NEXT_PUBLIC_AUTH0_FRONTEND_AUDIENCE` | The identifier you configured in [Setup](#api-settings) |
+
+### 3. Running in Development Mode
+
+Development has hot-reloading enabled. Next.js runs on port `3000` Wrangler (CF Workers) runs on port `8788`, proxying requests to Next to render the frontend.
+
+- The full stack: `npm run dev`
+- Just the frontend: `npm run frontend`
