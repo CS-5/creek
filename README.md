@@ -25,7 +25,7 @@ Creek is a Livestreaming/VOD platform powered by Cloudflare [Stream](https://www
 
 ## Development
 
-This project is built on Next.js, designed to run on Cloudflare Pages and utilize Cloudflare Pages Functions (Beta). Getting started is fairly simple.
+This project is built on Next.js, designed to run on Cloudflare Pages and utilize Cloudflare Pages Functions (Beta). Getting started is fairly simple... until you go to set up Auth0.
 
 ### 0. Install Dependencies
 
