@@ -10,7 +10,7 @@
     "next:export": "next export",
     "next:start": "next start",
     "next:lint": "next lint",
-    "backend": "dotenv -c -- bash -c 'wrangler pages dev --binding AUTH0_FRONTEND_AUDIENCE=\"$WORKER_AUTH0_FRONTEND_AUDIENCE\" --binding AUTH0_DOMAIN=\"$WORKER_AUTH0_DOMAIN\" --binding AUTH0_BACKEND_SECRET=\"$WORKER_AUTH0_BACKEND_SECRET\" --binding AUTH0_BACKEND_ID=\"$WORKER_AUTH0_BACKEND_ID\" -- npm run next:dev'",
+    "backend": "dotenv -c -- bash -c ./wrangler-dev.sh",
     "frontend": "npm run next:dev"
   },
   "dependencies": {

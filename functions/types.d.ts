@@ -17,6 +17,10 @@ declare type RequestData = {
     backendId: string;
     backendSecret: string;
   };
+  upstreamApis?: {
+    cfAccountId: string;
+    cfApiToken: string;
+  };
 };
 
 declare type MgmtTokenResponse = {

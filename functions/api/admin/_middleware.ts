@@ -12,18 +12,25 @@ const errorHandler: PagesFunction = async ({ next }) => {
 };
 
 // Move env vars to data object
-// TODO: Determine if this makes any sense at all
+// TODO: Determine if this makes any sense at all or if
+// there are any security issues here.
 const setup: PagesFunction<{
   AUTH0_DOMAIN: string;
   AUTH0_BACKEND_ID: string;
   AUTH0_BACKEND_SECRET: string;
   AUTH0_FRONTEND_AUDIENCE: string;
+  CF_ACCOUNT_ID: string;
+  CF_API_TOKEN: string;
 }> = async ({ env, next, data }) => {
   data.auth0 = {
     domain: env.AUTH0_DOMAIN,
     backendId: env.AUTH0_BACKEND_ID,
     backendSecret: env.AUTH0_BACKEND_SECRET,
     frontendAudience: env.AUTH0_FRONTEND_AUDIENCE,
+  };
+  data.upstreamApis = {
+    cfAccountId: env.CF_ACCOUNT_ID,
+    cfApiToken: env.CF_API_TOKEN,
   };
 
   return next();
