@@ -22,6 +22,10 @@ const setup: PagesFunction<{
   CF_ACCOUNT_ID: string;
   CF_API_TOKEN: string;
 }> = async ({ env, next, data }) => {
+  let key: keyof typeof env;
+  for (key in env)
+    if (!env[key]) throw new Error("Worker has not been configured");
+
   data.auth0 = {
     domain: env.AUTH0_DOMAIN,
     backendId: env.AUTH0_BACKEND_ID,
@@ -38,6 +42,7 @@ const setup: PagesFunction<{
 
 // Authenticate backend for all requests to the admin API
 const authenticateBackend: PagesFunction = async ({ next, data }) => {
+  // In theory, this should never be triggered
   if (!data.auth0) throw new Error("auth0 not setup");
 
   // If ManagementToken already exists, continue
