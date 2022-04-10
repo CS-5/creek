@@ -1,5 +1,5 @@
-export const Respond = (body: any, status: number = 200) => {
-  return new Response(JSON.stringify(body), {
+export const Respond = (body?: BodyInit | null | undefined, status = 200) => {
+  return new Response(body, {
     status,
   });
 };
