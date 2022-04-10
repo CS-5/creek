@@ -1,12 +1,13 @@
 import type { NextPage } from "next";
 import { useAuth0 } from "@auth0/auth0-react";
-import Error from "../../components/error";
+import { ErrorBox } from "../../components/error";
 import { useEffect, useState } from "react";
 
 const Settings: NextPage = () => {
   const [data, setData] = useState<any>();
   const { isLoading, isAuthenticated, getAccessTokenSilently } = useAuth0();
 
+  // TODO: Figure out how to properly handle errors
   useEffect(() => {
     if (isAuthenticated) {
       getAccessTokenSilently().then((token) => {
@@ -17,13 +18,13 @@ const Settings: NextPage = () => {
           .then(setData);
       });
     }
-  }, []);
+  }, [getAccessTokenSilently, isAuthenticated]);
 
   if (!isAuthenticated && !isLoading) {
     return (
-      <Error
-        statusCode={401}
-        errorText="You must be logged in to view this page"
+      <ErrorBox
+        status={401}
+        message="You must be logged in to view this page"
       />
     );
   }

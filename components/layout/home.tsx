@@ -1,14 +1,19 @@
-import Link from "next/link";
 import { FunctionComponent } from "react";
 import Logo from "../logo";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useRouter } from "next/router";
+import { ReactNode } from "react";
 
-interface Props {
+/* 
+
+Home header 
+
+*/
+interface HomeProps {
   className?: string;
 }
 
-export const LandingHeader: FunctionComponent<Props> = (props: Props) => {
+export const Header: FunctionComponent<HomeProps> = (props) => {
   const { loginWithRedirect, isAuthenticated } = useAuth0();
   const router = useRouter();
 
@@ -46,5 +51,43 @@ export const LandingHeader: FunctionComponent<Props> = (props: Props) => {
         </div>
       </div>
     </header>
+  );
+};
+
+/* 
+
+Home footer 
+
+*/
+interface FooterProps {
+  className?: string;
+}
+
+export const Footer: FunctionComponent<FooterProps> = (props) => {
+  return (
+    <footer {...props}>
+      <div className="footer footer-center p-4 bg-base-300 text-base-content">
+        <p>This is a footer.</p>
+      </div>
+    </footer>
+  );
+};
+
+/* 
+
+Home layout 
+
+*/
+interface LayoutProps {
+  children: ReactNode;
+}
+
+export const Layout: FunctionComponent<LayoutProps> = ({ children }) => {
+  return (
+    <div className="flex min-h-screen flex-col">
+      <Header className="flex h-16" />
+      <main className="flex flex-grow p-2">{children}</main>
+      <Footer className="flex h-16" />
+    </div>
   );
 };

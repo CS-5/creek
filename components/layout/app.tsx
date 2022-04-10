@@ -3,12 +3,20 @@ import { FunctionComponent } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import Logo from "../logo";
 import { useRouter } from "next/router";
+import { ReactNode } from "react";
+import { Footer as HomeFooter } from "./home";
+import { ErrorBox } from "../error";
 
-interface Props {
+/* 
+
+App header 
+
+*/
+interface HeaderProps {
   className?: string;
 }
 
-export const AppHeader: FunctionComponent<Props> = (props: Props) => {
+export const Header: FunctionComponent<HeaderProps> = (props) => {
   const router = useRouter();
   const { isLoading, isAuthenticated, logout, user } = useAuth0();
 
@@ -145,5 +153,40 @@ export const AppHeader: FunctionComponent<Props> = (props: Props) => {
         </label>
       </label>
     </header>
+  );
+};
+
+/* 
+
+App footer 
+
+*/
+// Reuse home footer for application (for now)
+export const Footer = HomeFooter;
+
+/* 
+
+App layout 
+
+*/
+interface LayoutProps {
+  children: ReactNode;
+}
+
+export const Layout: FunctionComponent<LayoutProps> = ({ children }) => {
+  const { isLoading, error } = useAuth0();
+
+  if (!isLoading && error) {
+    children = <ErrorBox status={401} message={error.message} />;
+  }
+
+  return (
+    <div className="flex min-h-screen flex-col">
+      <Header className="flex h-16" />
+      <main className="flex flex-grow p-2">
+        {isLoading ? "Loading..." : children}
+      </main>
+      <Footer className="flex h-16" />
+    </div>
   );
 };

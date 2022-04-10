@@ -1,5 +1,5 @@
-import Error from "../components/error";
+import { ErrorBox } from "../components/error";
 
 export default function Custom404() {
-  return <Error statusCode={404} errorText={"Page not found"} />;
+  return <ErrorBox status={404} message={"Page not found"} />;
 }
