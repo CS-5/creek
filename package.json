@@ -19,7 +19,8 @@
     "daisyui": "^2.13.6",
     "next": "12.1.4",
     "react": "18.0.0",
-    "react-dom": "18.0.0"
+    "react-dom": "18.0.0",
+    "react-query": "^4.0.0-beta.2"
   },
   "devDependencies": {
     "@cfworker/jwt": "^1.12.2",
