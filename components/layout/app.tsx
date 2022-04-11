@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { FunctionComponent } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import Logo from "../logo";
+import { Logo } from "../logo";
 import { useRouter } from "next/router";
 import { ReactNode } from "react";
 import { Footer as HomeFooter } from "./home";
