@@ -1,5 +1,5 @@
-import type { NextPage } from "next";
 import { useAuth0 } from "@auth0/auth0-react";
+import type { NextPage } from "next";
 
 const Index: NextPage = () => {
   const { isAuthenticated } = useAuth0();

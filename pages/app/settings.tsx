@@ -1,7 +1,7 @@
-import type { NextPage } from "next";
 import { useAuth0 } from "@auth0/auth0-react";
-import { ErrorBox } from "../../components/error";
+import type { NextPage } from "next";
 import { useEffect, useState } from "react";
+import { ErrorBox } from "../../components/error";
 
 const Settings: NextPage = () => {
   const [data, setData] = useState<any>();

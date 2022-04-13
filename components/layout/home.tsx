@@ -1,8 +1,7 @@
-import { FunctionComponent } from "react";
-import { Logo } from "../logo";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useRouter } from "next/router";
-import { ReactNode } from "react";
+import { FunctionComponent, ReactNode } from "react";
+import { Logo } from "../logo";
 
 /* 
 

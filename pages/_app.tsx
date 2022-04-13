@@ -1,13 +1,13 @@
-import "../styles/globals.css";
+import { Auth0Provider } from "@auth0/auth0-react";
 import { AppProps } from "next/app";
 import Head from "next/head";
+import { useRouter } from "next/router";
+import { ReactNode } from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 import { Layout as AppLayout } from "../components/layout/app";
 import { Layout as HomeLayout } from "../components/layout/home";
-import { ReactNode } from "react";
-import { Auth0Provider } from "@auth0/auth0-react";
-import { useRouter } from "next/router";
-import { QueryClientProvider, QueryClient } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
+import "../styles/globals.css";
 
 export default function App({ Component, pageProps }: AppProps): ReactNode {
   const callbackDomain =

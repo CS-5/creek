@@ -1,6 +1,6 @@
 import { parseJwt } from "@cfworker/jwt";
+import { MgmtTokenResponse, PagesFunction } from "../../types";
 import { Respond } from "../../util";
-import { PagesFunction, MgmtTokenResponse } from "../../types";
 
 const errorHandler: PagesFunction = async ({ next }) => {
   try {
