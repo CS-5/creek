@@ -10,14 +10,16 @@ import { Layout as HomeLayout } from "../components/layout/home";
 import "../styles/globals.css";
 
 export default function App({ Component, pageProps }: AppProps): ReactNode {
+  const Layout = useRouter().pathname.startsWith("/app")
+    ? AppLayout
+    : HomeLayout;
+
   const callbackDomain =
     typeof window !== "undefined"
       ? `${window.location.protocol}//${window.location.host}`
       : "http://localhost:3000";
 
-  const router = useRouter();
   const queryClient = new QueryClient();
-  const Layout = router.pathname.startsWith("/app") ? AppLayout : HomeLayout;
 
   return (
     <Auth0Provider
