@@ -7,7 +7,7 @@ interface Props {
 
 export const ErrorBox: FunctionComponent<Props> = (props: Props) => {
   return (
-    <div className="prose flex flex-col mx-auto justify-center items-center">
+    <div className="prose flex flex-col mx-auto items-center">
       <h1>An error occured</h1>
       <div className="divider">{props.status}</div>
       <p>{props.message}</p>
