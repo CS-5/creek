@@ -15,7 +15,7 @@ const Index: NextPage = () => {
           isAuthenticated ? () => router.push("/app") : loginWithRedirect
         }
       >
-        Sign In
+        {isAuthenticated ? "Go to admin" : "Sign In"}
       </button>
     </div>
   );
