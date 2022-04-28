@@ -34,7 +34,7 @@ interface FooterProps {
 export const Footer: FunctionComponent<FooterProps> = (props) => {
   return (
     <footer {...props}>
-      <div className="footer footer-center p-4 bg-base-300 text-base-content">
+      <div className="footer footer-center h-full p-4 bg-base-300 text-base-content">
         <p>Copyright © 2022 - All right reserved</p>
       </div>
     </footer>
@@ -53,9 +53,9 @@ interface LayoutProps {
 export const Layout: FunctionComponent<LayoutProps> = ({ children }) => {
   return (
     <div className="flex min-h-screen flex-col">
-      <Header className="flex h-16" />
-      <main className="flex flex-grow p-2">{children}</main>
-      <Footer className="flex h-16" />
+      <Header className="h-16" />
+      <main className="flex-auto">{children}</main>
+      <Footer className="h-16" />
     </div>
   );
 };

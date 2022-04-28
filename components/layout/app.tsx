@@ -181,11 +181,9 @@ export const Layout: FunctionComponent<LayoutProps> = ({ children }) => {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <Header className="flex h-16" />
-      <main className="flex flex-grow p-2">
-        {isLoading ? "Loading..." : children}
-      </main>
-      <Footer className="flex h-16" />
+      <Header className="h-16" />
+      <main className="flex-auto">{isLoading ? "Loading..." : children}</main>
+      <Footer className="h-16" />
     </div>
   );
 };
