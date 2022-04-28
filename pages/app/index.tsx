@@ -1,13 +1,20 @@
-import { useAuth0 } from "@auth0/auth0-react";
 import type { NextPage } from "next";
 
 const Index: NextPage = () => {
-  const { isAuthenticated } = useAuth0();
-
   return (
-    <div className="prose">
-      <h1>{isAuthenticated ? "Live Dashboard" : "Live"} </h1>
-    </div>
+    <>
+      <div className="prose grid grid-cols-3 grid-rows-2 gap-2">
+        <div id="schedule" className="col-span-2 row-span-2">
+          <h1>This is the schedule</h1>
+        </div>
+        <div id="videoLive" className="">
+          <div className="w-64 h-40 bg-orange-600">Box</div>
+        </div>
+        <div id="videoSettings" className="">
+          Settings
+        </div>
+      </div>
+    </>
   );
 };
 
