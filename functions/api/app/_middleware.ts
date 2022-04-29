@@ -26,13 +26,13 @@ const setup: PagesFunction<{
   for (key in env)
     if (!env[key]) throw new Error("Worker has not been configured");
 
-  data.auth0 = {
+  data.env.auth0 = {
     domain: env.AUTH0_DOMAIN,
     backendId: env.AUTH0_BACKEND_ID,
     backendSecret: env.AUTH0_BACKEND_SECRET,
     frontendAudience: env.AUTH0_FRONTEND_AUDIENCE,
   };
-  data.upstreamApis = {
+  data.env.upstreamApis = {
     cfAccountId: env.CF_ACCOUNT_ID,
     cfApiToken: env.CF_API_TOKEN,
   };
@@ -43,21 +43,21 @@ const setup: PagesFunction<{
 // Authenticate backend for all requests to the admin API
 const authenticateBackend: PagesFunction = async ({ next, data }) => {
   // In theory, this should never be triggered
-  if (!data.auth0) throw new Error("auth0 not setup");
+  if (!data.env.auth0) throw new Error("auth0 not setup");
 
   // If ManagementToken already exists, continue
   if (data.managementToken) return next();
 
   // Request ManagementToken from Auth0
   const tokenResponse: MgmtTokenResponse = await fetch(
-    `https://${data.auth0.domain}/oauth/token`,
+    `https://${data.env.auth0.domain}/oauth/token`,
     {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
-        client_id: data.auth0.backendId,
-        client_secret: data.auth0.backendSecret,
-        audience: `https://${data.auth0.domain}/api/v2/`,
+        client_id: data.env.auth0.backendId,
+        client_secret: data.env.auth0.backendSecret,
+        audience: `https://${data.env.auth0.domain}/api/v2/`,
         grant_type: "client_credentials",
       }),
     }
@@ -70,7 +70,7 @@ const authenticateBackend: PagesFunction = async ({ next, data }) => {
 
 // Verify client's JWT
 const verifyJwt: PagesFunction = async ({ request, next, data }) => {
-  if (!data.auth0) throw new Error("auth0 not setup");
+  if (!data.env.auth0) throw new Error("auth0 not setup");
 
   // If user is already set in this request chain (not sure if possible?), continue
   if (data.user) return next();
@@ -84,8 +84,8 @@ const verifyJwt: PagesFunction = async ({ request, next, data }) => {
   // Remove prefix from token and parse
   const result = await parseJwt(
     token.replace("Bearer ", ""),
-    `https://${data.auth0.domain}/`,
-    data.auth0.frontendAudience
+    `https://${data.env.auth0.domain}/`,
+    data.env.auth0.frontendAudience
   );
 
   // If token is invalid, inform user
@@ -98,7 +98,7 @@ const verifyJwt: PagesFunction = async ({ request, next, data }) => {
 };
 
 const getUser: PagesFunction = async ({ next, data }) => {
-  if (!data.auth0) throw new Error("auth0 not setup");
+  if (!data.env.auth0) throw new Error("auth0 not setup");
 
   // If no token was presented, return
   if (!data.jwt) return Respond("No valid token", 401);
@@ -111,7 +111,7 @@ const getUser: PagesFunction = async ({ next, data }) => {
 
   // Get user from Auth0
   data.user = await fetch(
-    `https://${data.auth0.domain}/api/v2/users/${data.jwt.sub}`,
+    `https://${data.env.auth0.domain}/api/v2/users/${data.jwt.sub}`,
     {
       headers: {
         "content-type": "application/json",

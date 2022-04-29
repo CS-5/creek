@@ -10,11 +10,11 @@ export const onRequest: PagesFunction = async ({ request, data, params }) => {
   const apiPath = params.path ? `/${path}` : "";
 
   return await fetch(
-    `https://api.cloudflare.com/client/v4/accounts/${data.upstreamApis?.cfAccountId}/stream${apiPath}`,
+    `https://api.cloudflare.com/client/v4/accounts/${data.env.upstreamApis.cfAccountId}/stream${apiPath}`,
     {
       method: request.method,
       headers: {
-        Authorization: `Bearer ${data.upstreamApis?.cfApiToken}`,
+        Authorization: `Bearer ${data.env.upstreamApis.cfApiToken}`,
         ...request.headers,
       },
     }

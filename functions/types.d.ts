@@ -11,15 +11,17 @@ declare type RequestData = {
   managementToken?: string;
   jwt?: JwtPayload;
   user?: User;
-  auth0?: {
-    domain: string;
-    frontendAudience: string;
-    backendId: string;
-    backendSecret: string;
-  };
-  upstreamApis?: {
-    cfAccountId: string;
-    cfApiToken: string;
+  env: {
+    auth0: {
+      domain: string;
+      frontendAudience: string;
+      backendId: string;
+      backendSecret: string;
+    };
+    upstreamApis: {
+      cfAccountId: string;
+      cfApiToken: string;
+    };
   };
 };
 
