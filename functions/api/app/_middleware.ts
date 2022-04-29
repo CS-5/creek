@@ -12,8 +12,7 @@ const errorHandler: PagesFunction = async ({ next }) => {
 };
 
 // Move env vars to data object
-// TODO: Determine if this makes any sense at all or if
-// there are any security issues here.
+// TODO: Determine if this makes any sense at all or if there are any security issues here.
 const setup: PagesFunction<{
   AUTH0_DOMAIN: string;
   AUTH0_BACKEND_ID: string;
@@ -22,6 +21,7 @@ const setup: PagesFunction<{
   CF_ACCOUNT_ID: string;
   CF_API_TOKEN: string;
 }> = async ({ env, next, data }) => {
+  // Ensure there are no undefined variables
   let key: keyof typeof env;
   for (key in env)
     if (!env[key]) throw new Error("Worker has not been configured");
