@@ -4,13 +4,13 @@
   "version": "1.0.0",
   "scripts": {
     "build": "npm run next:build && npm run next:export",
-    "dev": "npm run backend",
+    "dev": "dotenv -c -- bash -c './dev.sh \"npm run next:dev\"'",
     "next:dev": "next dev",
     "next:build": "next build",
     "next:export": "next export",
     "next:start": "next start",
     "next:lint": "next lint",
-    "backend": "dotenv -c -- bash -c ./wrangler-dev.sh",
+    "backend": "dotenv -c -- bash -c './dev.sh'",
     "frontend": "npm run next:dev"
   },
   "dependencies": {
